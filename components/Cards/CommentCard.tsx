@@ -11,8 +11,10 @@ const CommentCard = ({ body }: Comment) => {
           <div className="text-lg font-medium text-gray-800">Youssef Helmy</div>
           <div className="text-gray-500">2 weaks ago</div>
         </div>
-        <button className="flex items-center gap-2 text-indigo-600 text-lg font-semibold">
-          <Image src={"/assets/Path.svg"} alt="share" width={23} height={23} />
+        <button
+          className="flex items-center gap-2 text-[#5357B6] font-semibold"
+        >
+          <Image src={"/assets/Path.svg"} alt="share" width={20} height={20} />
           Reply
         </button>
       </div>

@@ -12,7 +12,7 @@ const IconComponent = ({
 }) => {
   return (
     <button className="flex items-center gap-1">
-      <Image src={src} alt={alt} width={22} height={22} />
+      <Image src={src} alt={alt} width={24} height={24} />
       {count && <span className="text-xs">{count}</span>}
     </button>
   );

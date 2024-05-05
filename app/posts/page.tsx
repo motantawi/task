@@ -50,21 +50,24 @@ const PostsComponent = () => {
     );
 
   return (
-    <div className="max-w-3xl mx-auto my-10 px-3">
+    <div className="max-w-4xl my-10 px-6 lg:px-0 lg:pl-40">
       <input
         type="text"
         value={searchParams.get("search") || ""}
         onChange={handleSearchChange}
-        placeholder="Search Posts..."
-        className="w-full p-4 mb-4 border-gray-300 border rounded-lg shadow-md"
+        placeholder="Typing..."
+        className="w-full p-4 mb-4 border-gray-400 text-gray-600 border rounded-md outline-none"
       />
-      <div className="space-y-4 shadow-md rounded-md p-4">
+      <div
+        className="space-y-4 rounded-md p-4"
+        style={{ boxShadow: "0px 4px 25px 0px #0000001A" }}
+      >
         {filteredPosts.length > 0 ? (
           filteredPosts.map((post) => (
             <Link
               href={`/posts/${post.id}`}
               key={post.id}
-              className="block bg-white rounded-lg p-5"
+              className="block bg-white rounded-lg p-5 md:w-[60%]"
             >
               <PostCard body={post.body} />
             </Link>

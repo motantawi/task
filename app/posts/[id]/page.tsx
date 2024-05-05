@@ -5,6 +5,7 @@ import CommentCard from "@/components/Cards/CommentCard";
 import PostCard from "@/components/Cards/PostCard";
 import IconComponent from "@/components/ui/IconComponent";
 import { PostFormData, Comment } from "@/types";
+import Image from "next/image";
 
 const Page = ({ params }: { params: { id: number } }) => {
   // Fetching post data
@@ -32,22 +33,22 @@ const Page = ({ params }: { params: { id: number } }) => {
   if (postError || commentsError) return <p>Error loading data...</p>;
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-6 py-8">
       <div className="flex flex-col lg:flex-row justify-between gap-4">
         {/* Main post area */}
-        <div className="lg:w-2/3 space-y-4">
-          <div className="w-full md:w-[60%] border-b-2 border-blue-600 pb-2">
+        <div className="lg:w-2/4 space-y-4">
+          <div className="w-full md:w-[50%] border-b-2 border-[#4DA9FF] pb-2">
             <PostCard body={post?.body || "Post content not available"} />
           </div>
 
           <div>
-            <div className="rounded-md bg-gray-400 w-full h-[20rem]"></div>
-            <div className="flex flex-wrap justify-between mt-4">
-              <div className="flex items-center gap-6">
+            <div className="rounded-lg bg-[#D9D9D9] w-full h-[20rem]"></div>
+            <div className="flex flex-wrap justify-between mt-4 mb-16">
+              <div className="flex items-center gap-9">
                 <IconComponent src="/assets/dislike.svg" alt="dislike" />
                 <IconComponent src="/assets/like.svg" alt="like" />
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center justify-between w-[35%]">
                 <IconComponent
                   src="/assets/comment.svg"
                   alt="comment"
@@ -73,15 +74,29 @@ const Page = ({ params }: { params: { id: number } }) => {
 
         {/* Related posts sidebar */}
         <div className="lg:w-1/3 space-y-4">
-          <input
-            type="text"
-            placeholder="Search Posts..."
-            className="w-full p-4 mb-4 border-gray-300 border rounded-lg shadow-sm"
-          />
-          <div className="shadow-md rounded-md p-3">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search"
+              className="w-full p-4 mb-4 border-gray-300 border rounded pl-11 outline-none"
+            />
+            <Image
+              src={"/assets/search.svg"}
+              alt="search"
+              className="absolute top-[17.5px] left-4"
+              width={22}
+              height={22}
+            />
+          </div>
+          <div className="border rounded p-5">
             <h4 className="font-semibold mb-4">Related Posts</h4>
             {Array.from({ length: 3 }).map((_, index) => (
-              <div className="mb-4" key={index}>
+              <div
+                className={`mb-10 ${
+                  index === 0 && "border-b-2 border-[#4DA9FF] pb-2"
+                }`}
+                key={index}
+              >
                 <PostCard body="est rerum tempore vitae sequi sint nihil reprehenderit dolor beatae ea dolores neque fugiat blanditiis voluptate porro vel nihil molestiae ut" />
               </div>
             ))}

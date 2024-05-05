@@ -40,8 +40,9 @@ const CreatePost = () => {
   return (
     <>
       <Toaster />
-      <div className="max-w-xl mx-auto p-4 my-10">
-        <h1 className="text-2xl font-bold mb-4">Create Post</h1>
+      <div className="max-w-2xl mt-20 mb-40 px-6 lg:px-0 lg:pl-40">
+        <h1 className="text-4xl font-bold mb-4">Form</h1>
+        <h3 className="text-2xl mb-4 text-[#667085]">create a post</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
             <label htmlFor="title" className="block mb-2">
@@ -50,8 +51,9 @@ const CreatePost = () => {
             <input
               type="text"
               id="title"
+              placeholder="Type Here"
               {...register("title")}
-              className="border rounded-md p-2 w-full"
+              className="border rounded-lg p-3 w-full outline-none"
             />
             <p className="text-red-500 text-xs mt-1">{errors.title?.message}</p>
           </div>
@@ -62,8 +64,9 @@ const CreatePost = () => {
             <input
               type="text"
               id="userId"
+              placeholder="Type Here"
               {...register("userId")}
-              className="border rounded-md p-2 w-full"
+              className="border rounded-lg p-3 w-full outline-none"
             />
             <p className="text-red-500 text-xs mt-1">
               {errors.userId?.message}
@@ -76,7 +79,7 @@ const CreatePost = () => {
             <textarea
               id="body"
               {...register("body")}
-              className="border rounded-md p-2 w-full"
+              className="border rounded-lg p-2 w-full outline-none"
               rows={5}
               draggable={false}
             />
@@ -85,10 +88,10 @@ const CreatePost = () => {
 
           <button
             type="submit"
-            className="bg-blue-500 text-white p-2 rounded-md w-full disabled:opacity-50"
+            className="bg-[#485AFF] text-white font-medium p-3 rounded-md w-full disabled:opacity-50"
             disabled={isPending}
           >
-            {isPending ? "Creating..." : "Create Post"}
+            {isPending ? "Creating..." : "Share Post"}
           </button>
         </form>
       </div>
