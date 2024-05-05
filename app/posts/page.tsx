@@ -7,7 +7,7 @@ import { requestPosts } from "@/api/posts";
 import Link from "next/link";
 import PostCard from "@/components/Cards/PostCard";
 
-const Home = () => {
+const PostsComponent = () => {
   // Hooks
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -50,33 +50,37 @@ const Home = () => {
     );
 
   return (
-    <Suspense fallback={<div className="text-center p-4">Loading...</div>}>
-      <div className="max-w-3xl mx-auto my-10 px-3">
-        <input
-          type="text"
-          value={searchParams.get("search") || ""}
-          onChange={handleSearchChange}
-          placeholder="Search Posts..."
-          className="w-full p-4 mb-4 border-gray-300 border rounded-lg shadow-md"
-        />
-        <div className="space-y-4 shadow-md rounded-md p-4">
-          {filteredPosts.length > 0 ? (
-            filteredPosts.map((post) => (
-              <Link
-                href={`/posts/${post.id}`}
-                key={post.id}
-                className="block bg-white rounded-lg p-5"
-              >
-                <PostCard body={post.body} />
-              </Link>
-            ))
-          ) : (
-            <p>No posts found.</p>
-          )}
-        </div>
+    <div className="max-w-3xl mx-auto my-10 px-3">
+      <input
+        type="text"
+        value={searchParams.get("search") || ""}
+        onChange={handleSearchChange}
+        placeholder="Search Posts..."
+        className="w-full p-4 mb-4 border-gray-300 border rounded-lg shadow-md"
+      />
+      <div className="space-y-4 shadow-md rounded-md p-4">
+        {filteredPosts.length > 0 ? (
+          filteredPosts.map((post) => (
+            <Link
+              href={`/posts/${post.id}`}
+              key={post.id}
+              className="block bg-white rounded-lg p-5"
+            >
+              <PostCard body={post.body} />
+            </Link>
+          ))
+        ) : (
+          <p>No posts found.</p>
+        )}
       </div>
-    </Suspense>
+    </div>
   );
 };
 
-export default Home;
+const Page = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>{<PostsComponent />}</Suspense>
+  );
+};
+
+export default Page;
